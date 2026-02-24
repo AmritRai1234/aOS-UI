@@ -316,7 +316,7 @@ impl Showcase {
                     aos_avatar("OpenBSD", 44.0),
                     aos_avatar("Jane D", 44.0),
                     Space::with_width(AosTheme::SPACING_LG),
-                    aos_separator(Orientation::Vertical),
+                    text("│").size(AosTheme::FONT_LG).color(AosTheme::BORDER),
                     Space::with_width(AosTheme::SPACING_LG),
                     aos_spinner(),
                     Space::with_width(AosTheme::SPACING_LG),
@@ -448,12 +448,13 @@ impl Showcase {
             scrollable(
                 container(page)
                     .width(Length::Fill)
-                    .align_x(Horizontal::Center),
-            ),
+                    .align_x(Horizontal::Center)
+                    .padding(Padding::from([AosTheme::SPACING_XS, 0.0])),
+            )
+            .height(Length::Fill),
         )
         .width(Length::Fill)
         .height(Length::Fill)
-        .align_x(Horizontal::Center)
         .style(page_bg)
         .into()
     }
