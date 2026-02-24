@@ -67,11 +67,11 @@ impl Showcase {
             ..container::Style::default()
         };
 
-        let section_title = |t: &str| {
-            text(t)
-                .size(AosTheme::FONT_XL)
-                .color(AosTheme::ACCENT)
-        };
+        macro_rules! section_title {
+            ($t:expr) => {
+                text($t).size(AosTheme::FONT_XL).color(AosTheme::ACCENT)
+            };
+        }
 
         let content = column![
             // ── Window Controls ──
@@ -86,7 +86,7 @@ impl Showcase {
             Space::with_height(AosTheme::SPACING_XL),
 
             // ── Buttons ──
-            section_title("Buttons"),
+            section_title!("Buttons"),
             Space::with_height(AosTheme::SPACING_SM),
             row![
                 aos_button("Default", ButtonVariant::Default, Some(Msg::ButtonPressed)),
@@ -102,7 +102,7 @@ impl Showcase {
             Space::with_height(AosTheme::SPACING_LG),
 
             // ── Inputs ──
-            section_title("Inputs"),
+            section_title!("Inputs"),
             Space::with_height(AosTheme::SPACING_SM),
             aos_text_input("Type something...", &self.text_value, Msg::TextChanged),
             Space::with_height(AosTheme::SPACING_SM),
@@ -119,7 +119,7 @@ impl Showcase {
             Space::with_height(AosTheme::SPACING_LG),
 
             // ── Indicators ──
-            section_title("Indicators"),
+            section_title!("Indicators"),
             Space::with_height(AosTheme::SPACING_SM),
             aos_progress(0.0..=100.0, 65.0),
             Space::with_height(AosTheme::SPACING_SM),
@@ -146,7 +146,7 @@ impl Showcase {
             Space::with_height(AosTheme::SPACING_LG),
 
             // ── Stat Cards ──
-            section_title("Stat Cards"),
+            section_title!("Stat Cards"),
             Space::with_height(AosTheme::SPACING_SM),
             row![
                 aos_stat_card("Users", "14,892", Trend::Up(12.5)),
@@ -159,7 +159,7 @@ impl Showcase {
             Space::with_height(AosTheme::SPACING_LG),
 
             // ── Stepper ──
-            section_title("Stepper"),
+            section_title!("Stepper"),
             Space::with_height(AosTheme::SPACING_SM),
             aos_stepper(&["Account", "Profile", "Review", "Complete"], 2),
             Space::with_height(AosTheme::SPACING_LG),
@@ -167,7 +167,7 @@ impl Showcase {
             Space::with_height(AosTheme::SPACING_LG),
 
             // ── Testimonial ──
-            section_title("Testimonial"),
+            section_title!("Testimonial"),
             Space::with_height(AosTheme::SPACING_SM),
             row![
                 aos_testimonial_card(
